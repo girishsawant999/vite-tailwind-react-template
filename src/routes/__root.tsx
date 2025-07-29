@@ -1,6 +1,7 @@
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import * as React from "react";
+import AuthProvider from "./auth/context";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -9,9 +10,10 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <React.Fragment>
-      <Link to="/posts">Posts</Link>
-      <Outlet />
-      <TanStackRouterDevtools />
+      <AuthProvider>
+        <Outlet />
+        <TanStackRouterDevtools />
+      </AuthProvider>
     </React.Fragment>
   );
 }
